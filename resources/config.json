@@ -8,7 +8,7 @@
   "SERVER_PORT":"8000",
   "SSL_KEY":"resources/keystore.jks",
   "SSL_PWD":"brugtbog",
-  "ALLOW_ORIGIN": "https://localhost:63343"
+  "ALLOW_ORIGIN": "https://localhost:63342"
 
 
 }
