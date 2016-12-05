@@ -13,7 +13,7 @@ public class ServiceImplementation {
 
     Config config = new ConfigController().getConfig();
 
-    String url = config.getDbType() + config.getDbHost() + ":" + config.getDbPort() + "/" + config.getDbName() + "?useSSL=false";
+    String url = config.getDbType() + config.getDbHost() + ":" + config.getDbPort() + "/" + config.getDbName() + "?useSSL=false&serverTimezone=UTC";
     String username = config.getDbUser();
     String password = config.getDbPass();
 
