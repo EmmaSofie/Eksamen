@@ -53,21 +53,32 @@ public class AdEndpoint {
 
             Session session = endpointController.checkSession(httpExchange);
 
-            if (session != null && session.getUserId() != 0) {
+            //Checking current session.
+
+            if (session != null && session.getUserId() == 0 || session.getUserId() == 1) {
+
+                //Converting the HTTP request to JSON.
 
                 JSONObject jsonObject = endpointController.parsePostRequest(httpExchange);
+
+                //Checking if JSON object contains the 4 necessary informations.
 
                 if (jsonObject.containsKey("isbn") & jsonObject.containsKey("rating") &
                         jsonObject.containsKey("comment") & jsonObject.containsKey("price")) {
 
+
+                    //Creating object before inserting into database.
+
                     Ad ad = new Ad();
                     ad.setUserId(session.getUserId());
-                    ad.setIsbn((Long) jsonObject.get("isbn"));
-                    ad.setRating(((Long) jsonObject.get("rating")).intValue());
+                    ad.setPrice((Integer.parseInt(jsonObject.get("price").toString())));
+                    ad.setRating((Integer.parseInt(jsonObject.get("rating").toString())));
                     ad.setComment((String) jsonObject.get("comment"));
-                    ad.setPrice(((Long) jsonObject.get("price")).intValue());
+                    ad.setIsbn((Long.parseLong(jsonObject.get("isbn").toString())));
 
                     boolean verifyRequest = adController.createAd(ad);
+
+                    System.out.println(verifyRequest);
 
                     if (verifyRequest) {
                         response.append(gson.toJson(ad));
@@ -156,7 +167,7 @@ public class AdEndpoint {
 
                         boolean verifyRequest = adController.deleteAd(adId);
 
-                        if(verifyRequest) {
+                        if (verifyRequest) {
                             response.append(gson.toJson("Success: Ad with ID: " + adId + " deleted"));
                         } else {
                             response.append("Failure: Can not delete ad");
@@ -167,7 +178,7 @@ public class AdEndpoint {
                 } else {
                     response.append("Failure: Incorrect parameters");
                 }
-            }  else {
+            } else {
                 response.append("Failure: Session not verified");
             }
 
@@ -221,13 +232,13 @@ public class AdEndpoint {
 
             Session session = endpointController.checkSession(httpExchange);
 
-            if (session != null && session.getUserId() != 0) {
+            JSONObject jsonObject = endpointController.parsePostRequest(httpExchange);
 
-                JSONObject jsonObject = endpointController.parsePostRequest(httpExchange);
+            if (session != null && session.getUserId() != 0) {
 
                 if (jsonObject.containsKey("id")) {
 
-                    int adId = (((Long) jsonObject.get("id")).intValue());
+                    int adId = ((Integer.parseInt(jsonObject.get("id").toString())));
 
                     Ad ad = adController.getAd(adId);
 

@@ -422,12 +422,17 @@ public class ServiceImplementation {
 
 
     public boolean createAd(Ad ad) {
+        System.out.println("Du er herinde i SQL!");
+
         try {
+            System.out.println("Du er herinde i SQL!");
             createAdSQL.setInt(1, ad.getUserId());
             createAdSQL.setLong(2, ad.getIsbn());
-            createAdSQL.setInt(3, ad.getRating());
+            createAdSQL.setInt(3, ad.getPrice());
             createAdSQL.setString(4, ad.getComment());
-            createAdSQL.setInt(5, ad.getPrice());
+            createAdSQL.setInt(5, ad.getRating());
+
+
 
             int rowsAffected = createAdSQL.executeUpdate();
 

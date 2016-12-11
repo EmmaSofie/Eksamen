@@ -1,4 +1,5 @@
 package Endpoints;
+
 import Controller.BookController;
 import Controller.EndpointController;
 import DTOobjects.Book;
@@ -11,6 +12,7 @@ import org.json.simple.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+
 /**
  * Created by krist
  */
@@ -72,21 +74,39 @@ public class BookEndpoint {
 
             Session session = endpointController.checkSession(httpExchange);
 
+            System.out.println("Du er her!");
+
+            System.out.println("Session: " + session.getUserId());
+
             if (session != null && session.getUserType() == 1) {
+                System.out.println("Her");
 
                 JSONObject jsonObject = endpointController.parsePostRequest(httpExchange);
+
+                System.out.println("jsonobject: " + jsonObject.toString());
 
                 if (jsonObject.containsKey("isbn") & jsonObject.containsKey("title") &
                         jsonObject.containsKey("edition") & jsonObject.containsKey("author")) {
 
+
+                    System.out.println("Du er her!");
+
                     Book book = new Book();
-                    book.setISBN((Long) jsonObject.get("isbn"));
+                    try {
+                        book.setISBN((Long.parseLong(jsonObject.get("isbn").toString())));
+                    } catch (Exception e) {
+                        System.out.println("Exception: " + e.getMessage());
+                    }
+
                     book.setTitle((String) jsonObject.get("title"));
                     book.setEdition((String) jsonObject.get("edition"));
                     book.setAuthor((String) jsonObject.get("author"));
 
+                    System.out.println("Book: " + book.toString());
+
                     if (book != null && bookController.createBook(book)) {
                         response.append(gson.toJson(book));
+                        System.out.println("Du er her!");
                     } else {
                         response.append("Failure: Can not create book");
                     }

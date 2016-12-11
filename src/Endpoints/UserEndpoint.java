@@ -234,9 +234,16 @@ public class UserEndpoint {
 
             Session session = endpointController.checkSession(httpExchange);
 
+
+
+
             if (session != null && session.getUserId() != 0) {
 
+                System.out.println("Du er her anden");
+
                 JSONObject jsonObject = endpointController.parsePostRequest(httpExchange);
+
+                System.out.println("JSONObject: " + jsonObject.toString());
 
                 if (jsonObject.containsKey("username") & jsonObject.containsKey("password") &
                         jsonObject.containsKey("phonenumber") & jsonObject.containsKey("address") &
@@ -244,6 +251,8 @@ public class UserEndpoint {
                         jsonObject.containsKey("cash") & jsonObject.containsKey("transfer")) {
 
                     User user = userController.getUser(session.getUserId());
+
+                    System.out.println("USer: " + user.getUsername());
 
                     if (user != null) {
                         if (!jsonObject.get("username").equals("")) {
