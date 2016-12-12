@@ -422,7 +422,6 @@ public class ServiceImplementation {
 
 
     public boolean createAd(Ad ad) {
-        System.out.println("Du er herinde i SQL!");
 
         try {
             createAdSQL.setInt(1, ad.getUserId());

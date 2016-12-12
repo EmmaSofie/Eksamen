@@ -74,7 +74,7 @@ public class BookEndpoint {
 
             Session session = endpointController.checkSession(httpExchange);
 
-            System.out.println("Du er her!");
+
 
             System.out.println("Session: " + session.getUserId());
 
@@ -89,7 +89,7 @@ public class BookEndpoint {
                         jsonObject.containsKey("edition") & jsonObject.containsKey("author")) {
 
 
-                    System.out.println("Du er her!");
+
 
                     Book book = new Book();
                     try {
@@ -106,7 +106,7 @@ public class BookEndpoint {
 
                     if (book != null && bookController.createBook(book)) {
                         response.append(gson.toJson(book));
-                        System.out.println("Du er her!");
+
                     } else {
                         response.append("Failure: Can not create book");
                     }
