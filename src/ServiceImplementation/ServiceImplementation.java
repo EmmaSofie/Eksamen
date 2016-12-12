@@ -425,7 +425,6 @@ public class ServiceImplementation {
         System.out.println("Du er herinde i SQL!");
 
         try {
-            System.out.println("Du er herinde i SQL!");
             createAdSQL.setInt(1, ad.getUserId());
             createAdSQL.setLong(2, ad.getIsbn());
             createAdSQL.setInt(3, ad.getPrice());
