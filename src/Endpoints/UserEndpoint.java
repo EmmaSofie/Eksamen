@@ -239,7 +239,6 @@ public class UserEndpoint {
 
             if (session != null && session.getUserId() != 0) {
 
-                System.out.println("Du er her anden");
 
                 JSONObject jsonObject = endpointController.parsePostRequest(httpExchange);
 
