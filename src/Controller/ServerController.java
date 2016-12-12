@@ -82,7 +82,7 @@ public class ServerController {
         httpsServer.createContext("/getuseradmin", new UserEndpoint.GetUserAdminHandler());
 
         httpsServer.createContext("/getads", new AdEndpoint.GetAdsHandler());
-        httpsServer.createContext("/createaad", new AdEndpoint.CreateAdHandler());
+        httpsServer.createContext("/createad", new AdEndpoint.CreateAdHandler());
         httpsServer.createContext("/deletead", new AdEndpoint.DeleteAdHandler());
 
         httpsServer.createContext("/getmyads", new AdEndpoint.GetMyAdsHandler());

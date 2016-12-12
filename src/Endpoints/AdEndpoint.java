@@ -55,7 +55,7 @@ public class AdEndpoint {
 
             //Checking current session.
 
-            if (session != null && session.getUserId() == 0 || session.getUserId() == 1) {
+            if (session != null && session.getUserId() != 0 || session.getUserId() == 0) {
 
                 //Converting the HTTP request to JSON.
 
@@ -78,7 +78,6 @@ public class AdEndpoint {
 
                     boolean verifyRequest = adController.createAd(ad);
 
-                    System.out.println(verifyRequest);
 
                     if (verifyRequest) {
                         response.append(gson.toJson(ad));
