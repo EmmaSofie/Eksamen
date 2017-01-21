@@ -24,7 +24,7 @@ public class EndpointController {
     public void writeResponse(HttpExchange httpExchange, String response) throws IOException {
         httpExchange.getResponseHeaders().set("Access-Control-Allow-Credentials", "true");
         httpExchange.getResponseHeaders().set("Access-Control-Allow-Origin", configController.getConfig().getAllowOrigin());
-        httpExchange.getResponseHeaders().set("Content-Type", "application/json");
+        httpExchange.getResponseHeaders().set("Content-Type", "application/json; charset=latin1_swedish_ci");
 
         httpExchange.sendResponseHeaders(200, response.length());
 

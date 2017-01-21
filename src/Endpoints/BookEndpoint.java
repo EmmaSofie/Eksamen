@@ -79,7 +79,7 @@ public class BookEndpoint {
             System.out.println("Session: " + session.getUserId());
 
             if (session != null && session.getUserType() == 1) {
-                System.out.println("Her");
+
 
                 JSONObject jsonObject = endpointController.parsePostRequest(httpExchange);
 

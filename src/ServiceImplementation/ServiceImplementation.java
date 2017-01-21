@@ -87,7 +87,7 @@ public class ServiceImplementation {
             deleteBookSQL = connection.prepareStatement("DELETE FROM books WHERE isbn = ?");
 //ADS
             createAdSQL = connection.prepareStatement(
-                    "INSERT INTO ads (userid, isbn, rating, comment, price) VALUES (?, ?, ?, ?, ?)");
+                    "INSERT INTO ads (userid, isbn, price, comment, rating) VALUES (?, ?, ?, ?, ?)");
 
             getAdsAllSQL = connection.prepareStatement("SELECT * FROM ads");
 
